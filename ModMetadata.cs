@@ -6,7 +6,7 @@ public record ModMetadata : IModMetadata
 {
     public string ModGuid { get; init; } = "eu.thescrewcollab.firmeansifir";
     public string Name { get; init; } = "FIR_MEANS_FIR";
-    public string Author { get; init; } = "tdancs";
+    public string Author { get; init; } = "ScrewTSW";
     public List<string>? Contributors { get; init; }
     public SemanticVersioning.Version Version { get; init; } = new("1.0.1");
     public SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.0");
