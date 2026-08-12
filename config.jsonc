@@ -1,0 +1,11 @@
+{
+  // Prevent FIR from being stripped on death for all items
+  "KeepFirOnDeath": true,
+
+  // Keep FIR on items brought into raid (survives death too)
+  "KeepFirOnBroughtItems": true,
+
+  // Keep FIR in secure container, special slots, armband, sheath on death
+  // Works even if KeepFirOnDeath is off
+  "KeepFirInProtectedSlots": true
+}
