@@ -14,7 +14,8 @@ public class FirMeansFir(
     RemoveFirPatch removeFirPatch,
     SecureContainerFirPatch secureContainerFirPatch,
     SnapshotFirOnRaidStartPatch snapshotPatch,
-    RestoreFirOnRaidEndPatch restorePatch) : IOnLoad
+    RestoreFirOnRaidEndPatch restorePatch,
+    BotFirPatch botFirPatch) : IOnLoad
 {
     public Task OnLoadAsync(CancellationToken cancellationToken)
     {
@@ -24,16 +25,19 @@ public class FirMeansFir(
         RemoveFirPatch.SetConfig(config);
         SecureContainerFirPatch.SetConfig(config);
         RestoreFirOnRaidEndPatch.SetConfig(config);
+        BotFirPatch.SetConfig(config);
 
         removeFirPatch.Enable();
         secureContainerFirPatch.Enable();
         snapshotPatch.Enable();
         restorePatch.Enable();
+        botFirPatch.Enable();
 
         logger.Success("FIR_MEANS_FIR loaded");
         logger.Info($"  KeepFirOnDeath: {config.KeepFirOnDeath}");
         logger.Info($"  KeepFirOnBroughtItems: {config.KeepFirOnBroughtItems}");
         logger.Info($"  KeepFirInProtectedSlots: {config.KeepFirInProtectedSlots}");
+        logger.Info($"  BotItemsAreFir: {config.BotItemsAreFir}");
 
         return Task.CompletedTask;
     }
