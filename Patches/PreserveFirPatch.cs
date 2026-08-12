@@ -2,14 +2,14 @@ using System.Collections.Concurrent;
 using System.Reflection;
 using System.Text.Json;
 using HarmonyLib;
-using SPTarkov.Common.Models.Logging;
+using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Reflection.Patching;
-using SPTarkov.Server.Core.Helpers.Profile;
+using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Match;
-using SPTarkov.Server.Core.Services.InRaid;
+using SPTarkov.Server.Core.Services;
 
 namespace FIR_MEANS_FIR.Patches;
 
@@ -30,7 +30,7 @@ public class SnapshotFirOnRaidStartPatch : AbstractPatch
     protected override MethodBase GetTargetMethod()
     {
         return typeof(LocationLifecycleService).GetMethod(
-            "StartLocalRaidAsync",
+            "StartLocalRaid",
             BindingFlags.Public | BindingFlags.Instance)!;
     }
 
@@ -102,7 +102,6 @@ public class RestoreFirOnRaidEndPatch : AbstractPatch
         if (!_config.KeepFirOnBroughtItems) return;
 
         if (!SnapshotFirOnRaidStartPatch.FirSnapshots.TryRemove(sessionId.ToString()!, out var firItemIds))
-            // TryRemove so snapshot is cleaned up after raid end
             return;
 
         var pmcData = fullServerProfile.CharacterData?.PmcData;

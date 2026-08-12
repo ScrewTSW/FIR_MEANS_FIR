@@ -1,9 +1,9 @@
 using System.Reflection;
 using HarmonyLib;
-using SPTarkov.Common.Models.Logging;
+using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Reflection.Patching;
-using SPTarkov.Server.Core.Generators.Bot;
+using SPTarkov.Server.Core.Generators;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 

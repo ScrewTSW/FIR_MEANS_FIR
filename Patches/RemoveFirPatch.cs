@@ -1,9 +1,9 @@
 using System.Reflection;
 using HarmonyLib;
-using SPTarkov.Common.Models.Logging;
+using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Reflection.Patching;
-using SPTarkov.Server.Core.Helpers.InRaid;
+using SPTarkov.Server.Core.Helpers;
 
 namespace FIR_MEANS_FIR.Patches;
 

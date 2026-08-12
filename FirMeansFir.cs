@@ -1,13 +1,13 @@
 using System.Reflection;
-using SPTarkov.Common.Models.Logging;
+using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Helpers.Server;
+using SPTarkov.Server.Core.Helpers;
 using FIR_MEANS_FIR.Patches;
 
 namespace FIR_MEANS_FIR;
 
-[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
+[Injectable]
 public class FirMeansFir(
     ISptLogger<FirMeansFir> logger,
     ModHelper modHelper,
@@ -17,7 +17,7 @@ public class FirMeansFir(
     RestoreFirOnRaidEndPatch restorePatch,
     BotFirPatch botFirPatch) : IOnLoad
 {
-    public Task OnLoadAsync(CancellationToken cancellationToken)
+    public Task OnLoad()
     {
         var modPath = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         var config = modHelper.GetJsonDataFromFile<ModConfig>(modPath, "config.jsonc");
